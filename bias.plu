@@ -1,0 +1,57 @@
+UNITS ENERGY=kcal/mol
+
+p1: POSITION ATOM=1
+p2: POSITION ATOM=2
+p3: POSITION ATOM=3
+p4: POSITION ATOM=4
+p5: POSITION ATOM=5
+p6: POSITION ATOM=6
+
+MATHEVAL ...
+LABEL=exp1
+ARG=p1.y
+FUNC=exp(-(x-5)*(x-5)/(2*0.1*0.1))
+PERIODIC=NO
+... MATHEVAL
+
+MATHEVAL ...
+LABEL=exp2
+ARG=p2.y
+FUNC=exp(-(x-5)*(x-5)/(2*0.1*0.1))
+PERIODIC=NO
+... MATHEVAL
+
+MATHEVAL ...
+LABEL=exp3
+ARG=p3.y
+FUNC=exp(-(x-5)*(x-5)/(2*0.1*0.1))
+PERIODIC=NO
+... MATHEVAL
+
+MATHEVAL ...
+LABEL=exp4
+ARG=p4.y
+FUNC=exp(-(x-5)*(x-5)/(2*0.1*0.1))
+PERIODIC=NO
+... MATHEVAL
+
+MATHEVAL ...
+LABEL=exp5
+ARG=p5.y
+FUNC=exp(-(x-5)*(x-5)/(2*0.1*0.1))
+PERIODIC=NO
+... MATHEVAL
+
+MATHEVAL ...
+LABEL=exp6
+ARG=p6.y
+FUNC=exp(-(x-5)*(x-5)/(2*0.1*0.1))
+PERIODIC=NO
+... MATHEVAL
+
+ordparam: COMBINE ARG=exp1,exp2,exp3,exp4,exp5,exp6 COEFFICIENTS=3.989,3.989,3.989,3.989,3.989,3.989 PERIODIC=NO
+
+RESTRAINT ARG=ordparam AT=0 KAPPA=2000.0 LABEL=density
+
+PRINT ARG=ordparam STRIDE=10
+
